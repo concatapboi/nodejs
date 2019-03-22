@@ -60,4 +60,4 @@ app.get('/checkout',(req,res)=>{
 app.get('/contact',(req,res)=>{
   res.render('Frontend/contact',{ title : 'Contact'})
 })
-app.listen(3000,()=>console.log('Server start on port 3000'))
+app.listen(process.env.PORT || 3000,()=>console.log('Server start on port 3000'))

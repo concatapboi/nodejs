@@ -38,7 +38,7 @@ app.use((req,res,next)=>{
     res.locals.success_message = req.flash('success_message')
     next();
 })
-mongoose.connect('mongodb://localhost:27017/singer1602',{
+mongoose.connect('mongodb://localhost:27017/nodejsdb',{
     useNewUrlParser:true,
     useCreateIndex:true,
 })

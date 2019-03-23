@@ -49,11 +49,16 @@ mongoose.connection
 const Publisher = mongoose.model('publisher',PublisherSchema)
 const Category = mongoose.model('category',CategorySchema)
 const Product = mongoose.model('product',ProductSchema)
+//Add
+app.get('/add',(req,res)=>{
+  res.render('add')
+})
 //Add Publisher
 app.get('/addpublisher',(req,res)=>{
   res.render('addPublisher',{title : 'PUBLISHER'})
 })
 app.post('/addpublisher',(req,res)=>{
+  console.log(req)
   const { name, meta_name } = req.body
         Publisher.create({
             name: name ,

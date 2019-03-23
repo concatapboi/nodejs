@@ -6,6 +6,7 @@ const session = require('express-session')
 const PublisherSchema = require('./models/Publisher')
 const CategorySchema = require('./models/Category')
 const ProductSchema = require('./models/Product')
+const SliderSchema = require('./models/Slider')
 
 const storage = multer.diskStorage({
     destination:(req,file,cb)=>{
@@ -20,7 +21,7 @@ const fileFilter = (req, file, cb)=>{
         return cb(new Error('File not allow'))
     cb(null, true)
 }
-const upload = multer({storage,fileFilter, limits:{fileSize:102400}}) // 100kb
+const upload = multer({storage,fileFilter, limits:{fileSize:10002400}}) // 100kb
 
 const app = express()
 app.set('view engine','ejs')
@@ -49,10 +50,7 @@ mongoose.connection
 const Publisher = mongoose.model('publisher',PublisherSchema)
 const Category = mongoose.model('category',CategorySchema)
 const Product = mongoose.model('product',ProductSchema)
-//Add
-app.get('/add',(req,res)=>{
-  res.render('add')
-})
+const Slider = mongoose.model('slider',SliderSchema)
 //Add Publisher
 app.get('/addpublisher',(req,res)=>{
   res.render('addPublisher',{title : 'PUBLISHER'})
@@ -87,7 +85,6 @@ app.post('/addcategory',(req,res)=>{
       if(err){
           return res.send(err.message)
       }
-      console.log(req.body)
         const { publisher, name, meta_name, amount } = req.body
         Category.create({
             publisher: publisher,
@@ -127,6 +124,24 @@ app.post('/addproduct',(req,res)=>{
         })
         .then(()=>{
             res.redirect('/addproduct')
+        })
+        .catch(e=>console.log(e.message))
+    })
+})
+//Add Slider
+app.get('/addslider',(req,res)=>{
+  res.render('addSlider',{title:'SLIDER'})
+})
+app.post('/addproduct',(req,res)=>{
+    upload.single('link')(req,res,err=>{
+        if(err){
+            return res.send(err.message)
+        }
+        Product.create({
+            link: req.file ? req.file.filename : 'default.jpg'
+        })
+        .then(()=>{
+            res.redirect('/addslider')
         })
         .catch(e=>console.log(e.message))
     })

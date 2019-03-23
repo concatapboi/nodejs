@@ -27,14 +27,10 @@
         <div class="row justify-content-center">
             <div class="col-6">
                 <h2>Add new <%=title%></h2>
-                <form method="POST" action="/addpublisher" enctype="multipart/form-data">
+                <form method="POST" action="/addproduct" enctype="multipart/form-data">
                     <div class="form-group">
-                        <label>Name:</label>
-                        <input type="text" class="form-control" placeholder="Enter name" name="name">
-                    </div>
-                    <div class="form-group">
-                        <label>Meta name:</label>
-                        <input type="text" name="meta_name">
+                        <label>Link:</label>
+                        <input type="file"  name="link">
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>

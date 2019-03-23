@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-const PublisherSchema = require('./models/Publisher')
+const PublisherSchema = require('./Publisher')
 const Publisher = mongoose.model('publisher',PublisherSchema)
 
 const CategorySchema = new Schema({

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-const CategorySchema = require('./models/Category')
+const CategorySchema = require('./Category')
 const Category = mongoose.model('category',CategorySchema)
 
 const ProductSchema = new Schema({
@@ -22,7 +22,7 @@ const ProductSchema = new Schema({
       min:0,//0:sold out,1:availabe,2:hot
       max: 2,
       default:0
-    }
+    },
     price:{
       type: Number,
       min:0,

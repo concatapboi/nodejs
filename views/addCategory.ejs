@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add new <%=title%></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-6">
+                <h2>Add new <%=title%></h2>
+                <form method="POST" action="/add" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label>Name:</label>
+                        <input type="text" class="form-control" placeholder="Enter name" name="name">
+                    </div>
+                    <div class="form-group">
+                        <label>Meta name:</label>
+                        <input type="file"  name="meta_name">
+                    </div>
+                    <div class="form-group">
+                      <label>Publisher:</label>
+                      <select name="publisher">
+                        <%if(dataPublisher.length > 0){dataPublisher.forEach((publisher,index)=>{%>
+                          <option value="<%=publisher.ObjectId%>"><%=publisher.name%></option>
+                        <%})}%>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Amount:</label>
+                        <input type="number" min="0" name="amount" value="0">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

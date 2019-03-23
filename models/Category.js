@@ -1,25 +1,15 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-const PublisherSchema = require('./Publisher')
-const Publisher = mongoose.model('publisher',PublisherSchema)
 
 const CategorySchema = new Schema({
-    publisher:{
-      type: mongoose.ObjectId,
-      ref: Publisher
-    },
     name:{
         type: String,
         required: true
     },
-    meta_name:{
-      type: String,
-      default: ''
-    },
+    publisher: String,
     amount:{
       type: Number,
-      min:0,
-      default: 0
+      min:0
     }
 })
 

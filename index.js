@@ -58,16 +58,20 @@ app.get('/addpublisher',(req,res)=>{
   res.render('addPublisher',{title : 'PUBLISHER'})
 })
 app.post('/addpublisher',(req,res)=>{
-  console.log(req)
-  const { name, meta_name } = req.body
+  upload.single('avatar')(req,res,err=>{
+      if(err){
+          return res.send(err.message)
+      }
+        const { name, meta_name } = req.body
         Publisher.create({
             name: name ,
             meta_name: meta_name
         })
         .then(()=>{
-            res.redirect()
+            res.redirect('/addpublisher')
         })
         .catch(e=>console.log(e.message))
+  })
 })
 //Add Category
 app.get('/addcategory',(req,res)=>{
@@ -79,17 +83,23 @@ app.get('/addcategory',(req,res)=>{
     .catch(e=>console.log(e.message));
 })
 app.post('/addcategory',(req,res)=>{
-  const { category, name, meta_name, amount } = req.body
+  upload.single('avatar')(req,res,err=>{
+      if(err){
+          return res.send(err.message)
+      }
+      console.log(req.body)
+        const { category, name, meta_name, amount } = req.body
         Category.create({
-          category: category,
+          category: new mongoose.Types.ObjectId(category),
             name: name ,
             amount: amount,
-            meta_name: meta_name
+            metaname: meta_name
         })
         .then(()=>{
-            res.redirect()
+            res.redirect('/addcategory')
         })
         .catch(e=>console.log(e.message))
+      })
 })
 //Add Product
 app.get('/addproduct',(req,res)=>{
@@ -108,7 +118,7 @@ app.post('/addproduct',(req,res)=>{
         const { name, meta_name, category, status, price, discount } = req.body
         Product.create({
             name: name ,
-            meta_name: meta_name,
+            metaname: meta_name,
             category: category,
             status: status,
             price: price,
@@ -116,7 +126,7 @@ app.post('/addproduct',(req,res)=>{
             link: req.file ? req.file.filename : 'default.jpg'
         })
         .then(()=>{
-            res.redirect()
+            res.redirect('/addproduct')
         })
         .catch(e=>console.log(e.message))
     })

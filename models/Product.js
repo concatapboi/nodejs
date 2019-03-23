@@ -6,6 +6,10 @@ const ProductSchema = new Schema({
         type: String,
         required: true
     },
+    meta_name:{
+      type: String,
+      default: ''
+    },
     category: String,
     link: String,
     status:{

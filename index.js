@@ -88,12 +88,12 @@ app.post('/addcategory',(req,res)=>{
           return res.send(err.message)
       }
       console.log(req.body)
-        const { category, name, meta_name, amount } = req.body
+        const { publisher, name, meta_name, amount } = req.body
         Category.create({
-          category: new mongoose.Types.ObjectId(category),
+            publisher: publisher,
             name: name ,
             amount: amount,
-            metaname: meta_name
+            meta_name: meta_name
         })
         .then(()=>{
             res.redirect('/addcategory')
@@ -118,7 +118,7 @@ app.post('/addproduct',(req,res)=>{
         const { name, meta_name, category, status, price, discount } = req.body
         Product.create({
             name: name ,
-            metaname: meta_name,
+            meta_name: meta_name,
             category: category,
             status: status,
             price: price,

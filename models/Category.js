@@ -6,6 +6,10 @@ const CategorySchema = new Schema({
         type: String,
         required: true
     },
+    meta_name:{
+      type: String,
+      default: ''
+    },
     publisher: String,
     amount:{
       type: Number,
